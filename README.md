@@ -9,7 +9,7 @@ Este es el portafolio de Ramses Valdez, un técnico en desarrollo de software y 
 - Framer Motion
 - React Simple Typewriter
 
-## Cómo Ejecutar el Proyecto
+## Cómo Ejecutar el Proyecto en Producción
 
 1. **Clona el repositorio:**
  ```sh
@@ -23,14 +23,48 @@ Este es el portafolio de Ramses Valdez, un técnico en desarrollo de software y 
    npm install
    ```
 
-3. **Ejecuta el proyecto en desarrollo:**
-   Una vez que las dependencias estén instaladas, puedes iniciar el servidor de desarrollo utilizando:
+3. **Construye el proyecto para producción:**
+   Ejecuta el siguiente comando para construir la versión optimizada para producción.
    ```sh
-   npm start
+   npm run build
    ```
 
-4. **Abre en el navegador:**
-   El proyecto se ejecutará en la dirección `http://localhost:3000`. Abre esta URL en tu navegador para visualizar el portafolio.
+4. **Configura el servicio usando systemd:**
+   Para demonizar el servidor usando systemd, primero debes crear un archivo de unidad (`.service`) para systemd.
+   Crea el archivo `/etc/systemd/system/portfolio.service` con el siguiente contenido (requiere permisos de administrador):
+   ```ini
+   [Unit]
+   Description=Portfolio de Ramses Valdez
+   After=network.target
+
+   [Service]
+   Type=simple
+   User=www-data
+   WorkingDirectory=/ruta/a/tu/proyecto/app-portafolio-ram
+   ExecStart=/usr/local/bin/serve -s build -l 80
+   Restart=always
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+   Asegúrate de reemplazar `/ruta/a/tu/proyecto/app-portafolio-ram` con la ruta correcta donde se encuentra tu proyecto. Además, asegúrate de que la ruta a `serve` sea correcta, utilizando el comando `which serve` para verificar.
+
+5. **Habilita e inicia el servicio:**
+   Después de crear el archivo de servicio, habilita e inicia el servicio utilizando los siguientes comandos (requiere permisos de administrador):
+   ```sh
+   sudo systemctl daemon-reload
+   sudo systemctl enable portfolio.service
+   sudo systemctl start portfolio.service
+   ```
+
+6. **Verifica el estado del servicio:**
+   Puedes verificar que el servicio se esté ejecutando correctamente con el siguiente comando:
+   ```sh
+   sudo systemctl status portfolio.service
+   ```
+
+7. **Abre en el navegador:**
+   El proyecto se ejecutará en la dirección `http://localhost`. Abre esta URL en tu navegador para visualizar el portafolio.
 
 ## Estructura del Proyecto
 El proyecto está organizado de la siguiente manera:

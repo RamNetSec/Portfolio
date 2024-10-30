@@ -81,9 +81,9 @@ function App() {
   };
 
   const menuItems = [
-    { text: 'Perfil', href: '#perfil' },
-    { text: 'Contacto', href: '#contact' },
-    // Agrega más enlaces según sea necesario
+    { text: 'Profile', href: '#profile' },
+    { text: 'Contact', href: '#contact' },
+    // Add more links as needed
   ];
 
   return (
@@ -101,7 +101,7 @@ function App() {
           <AppBar position="fixed" className="app-bar">
             <Toolbar>
               <Typography variant="h6" style={{ flexGrow: 1 }}>
-                Ramses Valdez - Portafolio
+                Ramses Valdez - Portfolio
               </Typography>
               {isMobile ? (
                 <>
@@ -133,8 +133,8 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Button color="inherit" href="#perfil">Perfil</Button>
-                  <Button color="inherit" href="#contact">Contacto</Button>
+                  <Button color="inherit" href="#profile">Profile</Button>
+                  <Button color="inherit" href="#contact">Contact</Button>
                 </>
               )}
             </Toolbar>
@@ -152,7 +152,7 @@ function App() {
               >
                 <Typography variant="h3" gutterBottom>
                   <Typewriter
-                    words={['Hola, soy Ramses Valdez']}
+                    words={['Hello, I am Ramses Valdez']}
                     loop={false}
                     cursor
                     cursorStyle="_"
@@ -162,8 +162,8 @@ function App() {
                   />
                 </Typography>
                 <Typography variant="h5" color="textSecondary" paragraph>
-                  Técnico en desarrollo de software y aprendiz de ciberseguridad.
-                  Me apasiona crear soluciones innovadoras y seguras.
+                  Software development technician and cybersecurity apprentice.
+                  I am passionate about creating innovative and secure solutions.
                 </Typography>
               </motion.div>
             </Grid>
@@ -178,20 +178,20 @@ function App() {
         </Container>
 
         {/* Secciones restantes con mejoras de responsividad */}
-        <motion.div id="perfil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+        <motion.div id="profile" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           {/* Nueva sección de Perfil Personal */}
           <Container maxWidth="lg" style={{ marginTop: '80px' }}>
             <Typography variant="h4" align="center" gutterBottom>
-              Perfil Personal
+              Personal Profile
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              Soy técnico en desarrollo de software y aprendiz de ciberseguridad, actualmente cursando la licenciatura en Desarrollo de Software en la Universidad de Insurgentes. Busco colaborar en una empresa innovadora donde pueda aportar creatividad y conocimientos actualizados para mejorar la eficiencia y alcanzar objetivos, ofreciendo una perspectiva fresca y experiencia en proyectos de desarrollo y seguridad de la información.
+              I am a software development technician and cybersecurity apprentice, currently pursuing a degree in Software Development at Universidad de Insurgentes. I seek to collaborate in an innovative company where I can contribute creativity and up-to-date knowledge to improve efficiency and achieve goals, offering a fresh perspective and experience in development and information security projects.
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
               <strong>Ramses Valdez L.</strong><br />
-              Intern en Desarrollo de Software<br />
-              Teléfono: +52 5515317677<br />
-              Móvil: +52 55 9422 9268<br />
+              Software Development Intern<br />
+              Phone: +52 5515317677<br />
+              Mobile: +52 55 9422 9268<br />
               Email: ramvallugo@gmail.com
             </Typography>
           </Container>
@@ -201,14 +201,14 @@ function App() {
           {/* Sección de Información de Contacto */}
           <Container maxWidth="lg" style={{ marginTop: '40px' }}>
             <Typography variant="h4" align="center" gutterBottom>
-              Información de Contacto
+              Contact Information
             </Typography>
             <Grid container spacing={2} justifyContent="center">
               <Grid item>
-                <Typography variant="h6">Teléfono: +52 5515317677</Typography>
+                <Typography variant="h6">Phone: +52 5515317677</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6">Móvil: +52 55 9422 9268</Typography>
+                <Typography variant="h6">Mobile: +52 55 9422 9268</Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h6">Email: ramvallugo@gmail.com</Typography>
@@ -219,7 +219,7 @@ function App() {
           {/* Sección de Contacto */}
           <Container maxWidth="lg" style={{ marginTop: '40px', marginBottom: '40px' }} id="contact">
             <Typography variant="h4" align="center" gutterBottom>
-              Contáctame
+              Contact Me
             </Typography>
             <Grid container justifyContent="center">
               <Grid item>
@@ -240,6 +240,15 @@ function App() {
                   variant="contained"
                 >
                   LinkedIn
+                </Button>
+                <Button
+                  startIcon={<FaGithub />}
+                  size="large"
+                  href="https://github.com/RamNetSec/Portfolio"
+                  style={{ margin: '10px', backgroundColor: '#b30000' }}
+                  variant="contained"
+                >
+                  Portfolio Project
                 </Button>
               </Grid>
             </Grid>
@@ -315,10 +324,13 @@ function App() {
                     <Typography variant="h5" component="div">
                       <School /> Historia Académica
                     </Typography>
+                    <Typography variant="h6">Universidad</Typography>
                     <Typography>Licenciatura en Desarrollo de Software - Universidad de Insurgentes</Typography>
                     <Typography>Fecha de Inicio: 11 de Noviembre de 2024</Typography>
                     <Typography>Graduación Esperada: Noviembre 2027</Typography>
-                    <Typography>Promedio de Preparatoria: 8.4</Typography>
+                    <Typography variant="h6" style={{ marginTop: '20px' }}>Preparatoria</Typography>
+                    <Typography>Técnico en Desarrollo de Software - CECYT 9</Typography>
+                    <Typography>Promedio: 8.33</Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -385,7 +397,7 @@ function App() {
           {/* Sección de Contacto */}
           <Container maxWidth="lg" style={{ marginTop: '40px', marginBottom: '40px' }} id="contact">
             <Typography variant="h4" align="center" gutterBottom>
-              Contáctame
+              Contact Me
             </Typography>
             <Grid container justifyContent="center">
               <Grid item>
@@ -406,6 +418,15 @@ function App() {
                   variant="contained"
                 >
                   LinkedIn
+                </Button>
+                <Button
+                  startIcon={<FaGithub />}
+                  size="large"
+                  href="https://github.com/RamNetSec/Portfolio"
+                  style={{ margin: '10px', backgroundColor: '#b30000' }}
+                  variant="contained"
+                >
+                  Portfolio Project
                 </Button>
               </Grid>
             </Grid>
