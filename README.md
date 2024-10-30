@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
+Este es el portafolio de Ramses Valdez, un técnico en desarrollo de software y aprendiz de ciberseguridad. El portafolio muestra sus habilidades, proyectos y certificaciones.
 
-## Available Scripts
+## Tecnologías Utilizadas
+- React
+- Material-UI
+- Framer Motion
+- React Simple Typewriter
 
-In the project directory, you can run:
+## Cómo Ejecutar el Proyecto
 
-### `npm start`
+1. **Clona el repositorio:**
+ ```sh
+   git clone https://github.com/RamNetSec/portfolio.git
+   cd portfolio/app-portafolio-ram
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Instala las dependencias necesarias:**
+   Ejecuta el siguiente comando para instalar todas las dependencias requeridas por el proyecto.
+   ```sh
+   npm install
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Ejecuta el proyecto en desarrollo:**
+   Una vez que las dependencias estén instaladas, puedes iniciar el servidor de desarrollo utilizando:
+   ```sh
+   npm start
+   ```
 
-### `npm test`
+4. **Abre en el navegador:**
+   El proyecto se ejecutará en la dirección `http://localhost:3000`. Abre esta URL en tu navegador para visualizar el portafolio.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Estructura del Proyecto
+El proyecto está organizado de la siguiente manera:
 
-### `npm run build`
+- **src/**: Contiene todos los archivos fuente del proyecto, incluyendo componentes, estilos y otros recursos importantes.
+  - **components/**: Contiene los componentes React reutilizables del portafolio.
+  - **App.js**: Archivo principal donde se estructura el contenido de la aplicación.
+  - **App.css / styles.css**: Archivos de estilo para personalizar el diseño visual de la aplicación.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Características del Proyecto
+- **Animaciones suaves**: Gracias a **Framer Motion**, el portafolio incluye animaciones atractivas que mejoran la experiencia del usuario.
+- **Elementos 3D**: Utilizando **React Three Fiber**, se incluyeron fragmentos 3D para darle una estética moderna al portafolio.
+- **Interactividad con Iconos**: Los iconos de **React Icons** permiten acceder fácilmente a los perfiles de redes sociales de Ramses.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Certificaciones y Proyectos
+El portafolio también muestra las certificaciones y proyectos más relevantes en los que Ramses ha trabajado. Entre ellos se encuentran:
+- **Certificación en Ciberseguridad**: Cisco Networking Academy - Introducción a la Ciberseguridad.
+- **Certificación en Linux**: NDG Linux Unhatched.
+- **Proyectos de desarrollo de software**: Presentados con descripciones y tecnologías utilizadas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contacto
+Puedes contactar a Ramses Valdez a través de:
+- **GitHub**: [https://github.com/RamNetSec](https://github.com/RamNetSec)
+- **LinkedIn**: [https://linkedin.com/in/ramnetsecurity](https://linkedin.com/in/ramnetsecurity)
 
-### `npm run eject`
+## Licencia
+Este proyecto está bajo la licencia MIT. Puedes consultar el archivo `LICENSE` para más detalles.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contribuciones
+Las contribuciones son bienvenidas. Si deseas contribuir al proyecto, por favor crea un fork del repositorio, realiza tus cambios y crea una solicitud de extracción (**pull request**).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Autor
+**Ramses Valdez** - Técnico en Desarrollo de Software y Aprendiz de Ciberseguridad.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Si tienes alguna duda o sugerencia, no dudes en contactarme a través de mis redes sociales. ¡Gracias por visitar mi portafolio!
