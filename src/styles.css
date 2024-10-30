@@ -1,0 +1,232 @@
+/* Estilos para el AppBar */
+.app-bar {
+  background-color: #1a1a1a; /* Fondo más oscuro */
+}
+
+/* Estilos para el contenedor del canvas */
+.canvas-container {
+  height: 300px;
+  background: linear-gradient(135deg, #2e3436, #3a3a3a); /* Degradado de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-container canvas {
+  transition: transform 0.1s ease-out;
+}
+
+/* Estilos para la imagen de seguridad */
+.canvas-container img {
+  width: 200px; /* Define un tamaño fijo para mantener la proporción circular */
+  height: 200px;
+  border-radius: 50%; /* Hace que la imagen sea completamente redonda */
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: añade una sombra para resaltar la imagen */
+}
+
+/* Efecto de fundido en los elementos */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilos para los botones de contacto */
+button {
+  background-color: #b30000; /* Rojo mate */
+  color: white;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: #ff4d4d; /* Rojo claro al pasar el cursor */
+}
+
+/* Estilos para las tarjetas */
+.MuiCard-root {
+  background-color: #2e2e2e; /* Fondo mate oscuro */
+  color: #e0e0e0; /* Texto claro */
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3); /* Sombra con tono rojo */
+}
+
+/* Estilos para los iconos en los títulos */
+.MuiTypography-h5 {
+  display: flex;
+  align-items: center;
+}
+
+.MuiTypography-h5 .MuiSvgIcon-root {
+  margin-right: 8px;
+  color: #ff4d4d; /* Iconos rojos */
+}
+
+/* Estilos para la sección del Hero */
+.hero-section {
+  background: linear-gradient(135deg, #1a1a1a, #262626); /* Fondo más oscuro y mate */
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-section h3 {
+  font-size: 2.5rem;
+  color: #ff4d4d; /* Título rojo */
+}
+
+.hero-section h5 {
+  font-size: 1.25rem;
+  color: #b0bec5;
+}
+
+/* Estilos para los enlaces */
+a {
+  color: #ff4d4d; /* Enlaces rojos */
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ff6666; /* Rojo más claro al pasar el cursor */
+}
+
+/* Estilos para las listas */
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* Estilos personalizados para las listas */
+ul.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.custom-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* Estilo para los iconos en los elementos de lista */
+ul.custom-list li .list-icon {
+  color: #ff4d4d; /* Iconos rojos */
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+body {
+  background-color: #1a1a1a; /* Fondo más oscuro */
+  color: #e0e0e0; /* Texto más claro */
+  font-family: 'Roboto', sans-serif; /* Tipografía elegante */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Estilo opcional para el cursor en el efecto de escritura */
+.Typewriter__cursor {
+  color: #ff4d4d; /* Cursor rojo */
+  font-weight: bold;
+}
+
+/* Estilo para el indicador de scroll */
+.MuiLinearProgress-root {
+  height: 5px;
+}
+
+.MuiLinearProgress-root > .MuiLinearProgress-bar {
+  background-color: #ff4d4d; /* Barra de progreso roja */
+}
+
+/* Estilo para las barras de progreso en habilidades */
+.skill-progress {
+  margin-bottom: 15px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.skill-progress > .MuiLinearProgress-bar {
+  background-color: #b30000; /* Rojo mate para las barras */
+}
+
+/* Estilos para los enlaces en el Drawer */
+.MuiDrawer-paper {
+  background-color: #2e2e2e; /* Fondo mate para el Drawer */
+}
+
+.MuiListItemText-primary {
+  color: #e0e0e0; /* Texto más claro */
+}
+
+.MuiListItemText-primary a {
+  color: #ff4d4d; /* Rojo elegante */
+  font-size: 1.2rem;
+}
+
+.MuiListItemText-primary a:hover {
+  color: #ff6666; /* Rojo más claro al pasar el cursor */
+}
+
+/* Ajustes para botones en el AppBar */
+.app-bar .MuiButton-root {
+  margin-left: 10px;
+}
+
+/* Responsividad para la sección del Hero */
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 30px 20px;
+    flex-direction: column;
+  }
+
+  .hero-section h3 {
+    font-size: 2rem;
+  }
+
+  .hero-section h5 {
+    font-size: 1rem;
+  }
+}
+
+/* Mejoras generales de responsividad */
+@media (max-width: 960px) {
+  .skill-progress {
+    height: 8px;
+  }
+
+  .MuiTypography-h5 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .MuiTypography-h6 {
+    font-size: 1rem;
+  }
+
+  .MuiButton-root {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Otros ajustes estéticos */
+a {
+  text-decoration: none;
+}
+
+a:focus, a:active {
+  outline: none;
+  text-decoration: none;
+}
