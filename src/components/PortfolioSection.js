@@ -36,8 +36,9 @@ const PortfolioSection = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.2 }}
       className="portfolio-section"
       id="portfolio"
     >
@@ -51,11 +52,17 @@ const PortfolioSection = () => {
           Proyectos Destacados
         </Typography>
         <Grid container spacing={4}>
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Grid item xs={12} md={6} key={project.title}>
               <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.2 
+                }}
+                viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
               >
                 <Card 
                   sx={{ 
