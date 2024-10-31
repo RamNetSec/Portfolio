@@ -1,57 +1,51 @@
 import React from 'react';
-import { Container, Grid, Typography, Card, CardContent, Box } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
+import { Container, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const certifications = [
   {
-    title: 'Curso Básico de Seguridad Informática para Empresas',
-    provider: 'Platzi',
-    date: 'Marzo 2023',
-    description: 'Aprendí los fundamentos de la seguridad informática, incluyendo gestión de riesgos, políticas de seguridad y herramientas esenciales para proteger la infraestructura de una empresa.',
+    title: "Certificación en Seguridad Informática",
+    institution: "Instituto XYZ",
+    image: "URL_DE_IMAGEN",
+    description: "Aprendí sobre análisis de vulnerabilidades, protección de datos y auditorías de seguridad."
   },
-  {
-    title: 'Introducción a Ciberseguridad Especial 0222b',
-    provider: 'Cisco',
-    date: 'Julio 2023',
-    description: 'Curso introductorio sobre ciberseguridad ofensiva y defensiva, cubriendo temas como análisis de vulnerabilidades, técnicas de penetración y estrategias de mitigación.',
-  },
-  {
-    title: 'NDG Linux Unhatched Español 0522a',
-    provider: 'Cisco Virtual Academy',
-    date: 'Enero 2023',
-    description: 'Introducción a Linux enfocada en la línea de comandos, administración básica del sistema, y configuración de entornos seguros para el desarrollo de software.',
-  },
-  // Añadir más certificaciones si es necesario
+  // Agregar más certificaciones
 ];
 
 const CertificationsSection = () => (
-  <motion.div className="certifications-section" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+  <motion.div 
+    className="certifications-section" 
+    initial={{ opacity: 0 }} 
+    animate={{ opacity: 1 }} 
+    transition={{ duration: 1 }}
+  >
     <Container maxWidth="lg">
       <Typography variant="h4" align="center" gutterBottom>
         Certificaciones
       </Typography>
-      <Box mt={4}>
-        <Grid container spacing={4}>
-          {certifications.map((cert, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card className="certifications-card">
-                <CardContent>
-                  <Typography variant="h5" gutterBottom>
-                    {cert.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {cert.provider} - {cert.date}
-                  </Typography>
-                  <Typography variant="body2" style={{ marginTop: '10px' }}>
-                    {cert.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Grid container spacing={4}>
+        {certifications.map((cert, index) => (
+          <Grid item xs={12} md={6} key={index}>
+            <Card elevation={3}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={cert.image}
+                alt={cert.title}
+              />
+              <CardContent>
+                <Typography variant="h5">{cert.title}</Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {cert.institution}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {cert.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   </motion.div>
 );

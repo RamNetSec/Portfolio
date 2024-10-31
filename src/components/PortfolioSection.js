@@ -1,12 +1,13 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, CardActions, Button, CardMedia, Chip, Stack } from '@mui/material';
-import { GitHub } from '@mui/icons-material'; // Eliminamos OpenInNew ya que no se usa
+import { Container, Typography, Grid, Card, CardContent, CardActions, Button, CardMedia, Chip, Stack, Box } from '@mui/material';
+import { GitHub, Language, Security, Code } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
     title: "RAT_LINUX",
-    description: "Centro de Comando WebSocket basado en Python que permite la comunicación en tiempo real entre servidor y múltiples clientes. Utiliza asyncio, websockets, subprocess, y fastapi.",
-    image: "https://th.bing.com/th/id/OIP.lK6XVP9rKPgYN6D-TflmNwHaD_?rs=1&pid=ImgDetMain", // Añade una imagen preview
+    description: "Centro de Comando WebSocket basado en Python que permite la comunicación en tiempo real entre servidor y múltiples clientes. Implementa características avanzadas de seguridad y control remoto.",
+    image: "https://th.bing.com/th/id/OIP.lK6XVP9rKPgYN6D-TflmNwHaD_?rs=1&pid=ImgDetMain",
     technologies: ["Python", "WebSocket", "FastAPI", "AsyncIO"],
     github: "https://github.com/RamNetSec/RAT_LINUX",
     features: [
@@ -14,101 +15,167 @@ const projects = [
       "Transferencia de archivos",
       "Persistencia en Windows/Linux",
       "Interfaz interactiva"
-    ]
+    ],
+    type: "security"
   },
   {
     title: "Sec_Server_RamNetSec",
-    description: "Detector de intrusos en red que utiliza nmap para escanear la red local. Identifica nuevos dispositivos y realiza análisis de seguridad de puertos.",
+    description: "Sistema de detección de intrusos en red que utiliza nmap para monitoreo continuo. Incluye análisis automatizado de vulnerabilidades y generación de informes detallados.",
     image: "https://th.bing.com/th/id/R.a43afe930fe7b6639eaa372019c4529c?rik=sjwP%2budI0Kn%2bzA&pid=ImgRaw&r=0",
     technologies: ["Python", "Nmap", "Network Security", "Port Scanning"],
     github: "https://github.com/RamNetSec/Sec_Server_RamNetSec",
     features: [
-      "Escaneo de red",
-      "Detección de intrusos",
-      "Análisis de puertos",
-      "Monitoreo continuo"
-    ]
+      "Escaneo de red en tiempo real",
+      "Detección avanzada de intrusos",
+      "Análisis de puertos y servicios",
+      "Sistema de alertas configurable"
+    ],
+    type: "security"
+  },
+  {
+    title: "Portfolio Personal",
+    description: "Portafolio profesional desarrollado con React y Material-UI. Implementa diseño responsivo y efectos visuales modernos.",
+    image: "URL_DE_TU_IMAGEN",
+    technologies: ["React", "Material-UI", "Framer Motion", "CSS"],
+    github: "https://github.com/RamNetSec/Portfolio",
+    features: [
+      "Diseño responsivo",
+      "Animaciones fluidas",
+      "Optimización SEO",
+      "Efectos visuales modernos"
+    ],
+    type: "development"
   }
 ];
 
 const PortfolioSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      {projects.map((project, index) => (
-        <Grid item xs={12} md={6} key={project.title}>
-          <Card 
-            sx={{ 
-              height: '100%',
-              background: 'rgba(26, 26, 26, 0.8)',
-              border: '1px solid rgba(255, 77, 77, 0.2)'
-            }}
-          >
-            {project.image && (
-              <CardMedia
-                component="img"
-                height="200"
-                image={project.image}
-                alt={project.title}
-                sx={{ objectFit: 'cover' }}
-              />
-            )}
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h5" gutterBottom>
-                {project.title}
-              </Typography>
-              <Typography variant="body2" paragraph>
-                {project.description}
-              </Typography>
-              <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', gap: 1 }}>
-                {project.technologies.map((tech) => (
-                  <Chip 
-                    key={tech}
-                    label={tech}
-                    size="small"
-                    sx={{ 
-                      backgroundColor: 'rgba(255, 77, 77, 0.2)',
-                      color: '#fff',
-                      '&:hover': {
-                        backgroundColor: 'rgba(255, 77, 77, 0.3)'
-                      }
-                    }}
+    <motion.div
+      className="portfolio-section"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <Container maxWidth="lg">
+        <Typography variant="h4" align="center" gutterBottom>
+          Portafolio de Proyectos
+        </Typography>
+        <Typography variant="subtitle1" align="center" gutterBottom color="textSecondary">
+          Proyectos destacados en desarrollo y ciberseguridad
+        </Typography>
+        <Grid container spacing={4} sx={{ mt: 4 }}>
+          {projects.map((project, index) => (
+            <Grid item xs={12} md={6} lg={4} key={index}>
+              <motion.div variants={itemVariants}>
+                <Card 
+                  className="portfolio-card"
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative'
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={project.image}
+                    alt={project.title}
+                    sx={{ objectFit: 'cover' }}
                   />
-                ))}
-              </Stack>
-              <Typography variant="subtitle2" gutterBottom>
-                Características principales:
-              </Typography>
-              <ul style={{ paddingLeft: '20px' }}>
-                {project.features.map((feature) => (
-                  <li key={feature}>
-                    <Typography variant="body2">
-                      {feature}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 10,
+                      right: 10,
+                      bgcolor: 'rgba(0,0,0,0.6)',
+                      borderRadius: '50%',
+                      p: 1
+                    }}
+                  >
+                    {project.type === 'security' ? <Security color="error" /> : <Code color="primary" />}
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography variant="h5" gutterBottom>
+                      {project.title}
                     </Typography>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardActions>
-              <Button 
-                startIcon={<GitHub />}
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  backgroundColor: 'rgba(255, 77, 77, 0.8)',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 77, 77, 1)'
-                  }
-                }}
-              >
-                Ver en GitHub
-              </Button>
-            </CardActions>
-          </Card>
+                    <Typography variant="body2" color="textSecondary" paragraph>
+                      {project.description}
+                    </Typography>
+                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
+                      {project.technologies.map((tech, idx) => (
+                        <Chip
+                          key={idx}
+                          label={tech}
+                          size="small"
+                          sx={{
+                            m: 0.5,
+                            bgcolor: 'rgba(255,77,77,0.1)',
+                            color: 'white'
+                          }}
+                        />
+                      ))}
+                    </Stack>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Características principales:
+                    </Typography>
+                    <ul style={{ paddingLeft: '1.2rem', margin: '0.5rem 0' }}>
+                      {project.features.map((feature, idx) => (
+                        <li key={idx}>
+                          <Typography variant="body2" color="textSecondary">
+                            {feature}
+                          </Typography>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardActions sx={{ p: 2, pt: 0 }}>
+                    <Button
+                      startIcon={<GitHub />}
+                      variant="contained"
+                      color="primary"
+                      href={project.github}
+                      target="_blank"
+                      fullWidth
+                      sx={{
+                        bgcolor: 'rgba(255,77,77,0.9)',
+                        '&:hover': {
+                          bgcolor: 'rgba(255,77,77,1)'
+                        }
+                      }}
+                    >
+                      Ver Proyecto
+                    </Button>
+                  </CardActions>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Container>
+      </Container>
+    </motion.div>
   );
 };
 
-export default PortfolioSection;
+export default React.memo(PortfolioSection);

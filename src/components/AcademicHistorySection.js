@@ -19,6 +19,12 @@ const academicHistory = [
     description: 'Formación técnica en programación, estructuras de datos, bases de datos y ciberseguridad. Participación en hackathons y proyectos colaborativos que fomentaron habilidades de trabajo en equipo y resolución de problemas.',
     image: 'https://th.bing.com/th/id/R.3dd8e3248f37470a50f85dff8362650a?rik=2JCOCnQ7%2fKUhqw&riu=http%3a%2f%2funicarrera.com%2fwp-content%2fuploads%2f2015%2f02%2fIPN-Logo-e1423337644663.jpg&ehk=rY5rYl2RoQ12p050zXODmlIwNFf9n5FxRiAdTZklgdI%3d&risl=&pid=ImgRaw&r=0',
   },
+  {
+    degree: "Ingeniería en Sistemas",
+    institution: "Universidad ABC",
+    period: "2015 - 2019",
+    description: "Me especialicé en desarrollo de software y estudié fundamentos de ciberseguridad."
+  },
   // Añadir más historial académico si es necesario
 ];
 
@@ -44,7 +50,7 @@ const AcademicHistorySection = () => (
                   <Typography variant="h5">{item.degree}</Typography>
                   <Typography variant="subtitle1">{item.institution}</Typography>
                   <Typography variant="body2" color="textSecondary">
-                    {item.startDate} - {item.expectedGraduation ? `Graduación Esperada: ${item.expectedGraduation}` : `Graduado: ${item.graduationDate}`}
+                    {item.startDate ? `${item.startDate} - ${item.expectedGraduation ? `Graduación Esperada: ${item.expectedGraduation}` : `Graduado: ${item.graduationDate}`}` : item.period}
                   </Typography>
                   <Typography variant="body1" style={{ marginTop: '10px' }}>
                     {item.description}
