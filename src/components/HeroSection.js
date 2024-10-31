@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Button, Box, Avatar } from '@mui/material';
+import { Container, Typography, Button, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const HeroSection = () => {

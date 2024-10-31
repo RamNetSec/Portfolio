@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
-import { Web, MobileFriendly, Code, Security, Terminal } from '@mui/icons-material';
+import { Web, Code, Security, Terminal } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 const projects = [

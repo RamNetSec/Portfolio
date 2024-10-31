@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, Avatar, Box, Chip, Divider } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, Avatar } from '@mui/material';
 import { motion } from 'framer-motion';
-import { CodeRounded, SecurityRounded, SchoolRounded } from '@mui/icons-material';
 
 const ProfileSection = () => (
   <motion.div
