@@ -17,21 +17,6 @@ const projects = [
     link: 'https://github.com/RamNetSec/Portfolio',
   },
   {
-    title: 'Proyecto Web',
-    description: 'Descripción del proyecto web.',
-    icon: <Web style={{ fontSize: 60, color: '#ff4d4d' }} />,
-  },
-  {
-    title: 'Aplicación Móvil',
-    description: 'Descripción de la aplicación móvil.',
-    icon: <MobileFriendly style={{ fontSize: 60, color: '#ff4d4d' }} />,
-  },
-  {
-    title: 'Herramienta de Desarrollo',
-    description: 'Descripción de la herramienta.',
-    icon: <Code style={{ fontSize: 60, color: '#ff4d4d' }} />,
-  },
-  {
     title: 'Centro de Comando WebSocket',
     description: 'Sistema de comunicación en tiempo real entre servidor y clientes, con transferencia de archivos y soporte multiplataforma.',
     icon: <Code style={{ fontSize: 60, color: '#ff4d4d' }} />,

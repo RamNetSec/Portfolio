@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Grid } from '@mui/material';
+import { Container, Typography, Grid, LinearProgress, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Radar } from 'react-chartjs-2';
 import {
@@ -84,6 +84,20 @@ const options = {
   maintainAspectRatio: false
 };
 
+const skillsList = [
+  { name: 'JavaScript', level: 100 },
+  { name: 'React', level: 100 },
+  { name: 'Node.js', level: 80 },
+  { name: 'Linux', level: 80 },
+  { name: 'Java', level: 70 },
+  { name: 'Python', level: 60 },
+  { name: 'Git', level: 80 },
+  { name: 'Bash Scripting', level: 70 },
+  { name: 'Seguridad en Redes', level: 76 },
+  { name: 'Desarrollo Web', level: 80 },
+  { name: 'Gestión de BD', level: 70 }
+];
+
 const SkillsSection = () => {
   return (
     <motion.div
@@ -96,11 +110,35 @@ const SkillsSection = () => {
         <Typography variant="h4" align="center" gutterBottom>
           Habilidades
         </Typography>
-        <Grid container justifyContent="center">
-          <Grid item xs={12} md={8}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
             <div style={{ height: '500px', position: 'relative' }}>
               <Radar data={skills} options={options} />
             </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mt: 2 }}>
+              {skillsList.map((skill, index) => (
+                <Box key={index} sx={{ mb: 2 }}>
+                  <Typography variant="body1" sx={{ mb: 1 }}>
+                    {skill.name}
+                  </Typography>
+                  <LinearProgress 
+                    variant="determinate" 
+                    value={skill.level}
+                    sx={{
+                      height: 10,
+                      borderRadius: 5,
+                      backgroundColor: 'rgba(255, 77, 77, 0.2)',
+                      '& .MuiLinearProgress-bar': {
+                        backgroundColor: 'rgba(255, 77, 77, 1)',
+                        borderRadius: 5,
+                      }
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Grid>
         </Grid>
       </Container>
