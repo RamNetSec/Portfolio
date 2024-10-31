@@ -109,13 +109,13 @@ const App = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // Primer useEffect - verificación de dominio
   useEffect(() => {
     const checkDomain = () => {
       const allowedDomain = 'a1.ramnetsec.com';
       const currentDomain = window.location.hostname;
       
       if (currentDomain !== allowedDomain) {
-        // Redirigir al dominio permitido o mostrar mensaje de error
         window.location.href = `https://${allowedDomain}`;
         return;
       }
@@ -126,12 +126,7 @@ const App = () => {
     checkDomain();
   }, []);
 
-  // Si el dominio no es válido, no renderizar nada
-  if (!isValidDomain) {
-    return null;
-  }
-
-  // Efecto para manejar el progreso de scroll
+  // Segundo useEffect - manejo del scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
@@ -141,15 +136,11 @@ const App = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-
-    // Limpia el evento al desmontar el componente
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Tercer useEffect - efectos gaussianos
   useEffect(() => {
-    // Cargar el script de efectos gaussianos
     const script = document.createElement('script');
     script.src = '/js/gaussianEffects.js';
     script.async = true;
@@ -165,7 +156,6 @@ const App = () => {
     document.body.appendChild(script);
 
     return () => {
-      // Limpieza al desmontar
       script.removeEventListener('load', handleScriptLoad);
       document.body.removeChild(script);
       const container = document.querySelector('.gaussian-container');
@@ -175,11 +165,11 @@ const App = () => {
     };
   }, []);
 
+  // Resto de funciones auxiliares
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
 
-  // Añadir control de scroll suave
   const scrollToSection = (elementId) => {
     const element = document.querySelector(elementId);
     if (element) {
@@ -190,6 +180,11 @@ const App = () => {
     }
     setDrawerOpen(false);
   };
+
+  // Si el dominio no es válido, retornar null temprano
+  if (!isValidDomain) {
+    return null;
+  }
 
   // Modificar menuItems para usar la nueva función de scroll
   const menuItems = [
