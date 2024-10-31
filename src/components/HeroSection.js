@@ -11,10 +11,14 @@ const HeroSection = () => {
       transition={{ duration: 1 }}
     >
       <Container maxWidth="lg" sx={{ textAlign: 'center', py: 10 }}>
-        <Avatar
-          alt="Ramses Valdez"
+        <motion.img
           src="https://avatars.githubusercontent.com/u/107959089?s=400&u=9a2acd0baa3c9e4017343acb890fcf598e4e2860&v=4"
-          sx={{ width: 200, height: 200, margin: 'auto' }}
+          alt="Ramses Valdez"
+          className="profile-picture"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1 }}
+          style={{ width: 200, height: 200, margin: 'auto' }}
         />
         <Typography variant="h2" gutterBottom>
           ¡Hola, soy Ramses Valdez Lugo!

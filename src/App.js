@@ -28,6 +28,8 @@ import ContactSection from './components/ContactSection';
 import AcademicHistorySection from './components/AcademicHistorySection';
 import SkillsSection from './components/SkillsSection';
 import PortfolioSection from './components/PortfolioSection';
+import ExperienceSection from './components/ExperienceSection';
+import CertificationsSection from './components/CertificationsSection';
 
 // Actualización del tema a una paleta más elegante, mate, oscura y roja
 const darkTheme = createTheme({
@@ -188,10 +190,11 @@ const App = () => {
   // Modificar menuItems para usar la nueva función de scroll
   const menuItems = [
     { text: 'Profile', id: '#profile' },
+    { text: 'Experience', id: '#experience' },
     { text: 'Skills', id: '#skills' },
-    { text: 'Contact', id: '#contact' },
-    { text: 'Academic History', id: '#academic-history' },
+    { text: 'Certifications', id: '#certifications' }, // Agregado
     { text: 'Portfolio', id: '#portfolio' },
+    { text: 'Academic History', id: '#academic-history' },
   ];
 
   return (
@@ -252,8 +255,8 @@ const App = () => {
                   ) : (
                     <>
                       <Button color="inherit" onClick={() => scrollToSection('#profile')}>Profile</Button>
+                      <Button color="inherit" onClick={() => scrollToSection('#experience')}>Experience</Button>
                       <Button color="inherit" onClick={() => scrollToSection('#skills')}>Skills</Button>
-                      <Button color="inherit" onClick={() => scrollToSection('#contact')}>Contact</Button>
                       <Button color="inherit" onClick={() => scrollToSection('#academic-history')}>Academic History</Button> {/* Agregar botón al menú */}
                     </>
                   )}
@@ -268,17 +271,14 @@ const App = () => {
               <HeroSection />
               <div className="content-sections">
                 <ProfileSection />
+                <ExperienceSection />
                 <SkillsSection /> {/* Agregar aquí */}
+                <CertificationsSection /> {/* Agregado */}
                 <PortfolioSection />
                 <AcademicHistorySection className="fade-on-scroll" /> {/* Renderizar nuevo componente */}
-                <ContactSection />
               </div>
             </Suspense>
           </main>
         </div>
-      </div>
-    </ThemeProvider>
-  );
-};
-
+      </div>    </ThemeProvider>  );};
 export default App;

@@ -230,7 +230,7 @@ body {
 
 /* Estilos para componentes Material-UI */
 .MuiCard-root {
-  background: rgba(26, 26, 26, 0.6) !important; /* Más transparente */
+  background: rgba(26, 26, 26, 0.8) !important; /* Más transparente */
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
@@ -261,7 +261,6 @@ body {
 
 /* Contenedores de secciones */
 .hero-section,
-.contact-section,
 .certifications-section,
 .academic-history-section {
   position: relative;
@@ -277,7 +276,6 @@ body {
 }
 
 .hero-section:hover,
-.contact-section:hover,
 .certifications-section:hover,
 .academic-history-section:hover {
   background: rgba(10, 10, 10, 0.85) !important;
@@ -330,8 +328,7 @@ body {
 }
 
 /* Ajustes de texto */
-.hero-section .MuiTypography-root,
-.contact-section .MuiTypography-root {
+.hero-section .MuiTypography-root {
   color: #ffffff !important; /* Forzar color blanco */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 500;
@@ -341,16 +338,6 @@ body {
 /* Ajuste para textos secundarios */
 .MuiTypography-colorTextSecondary {
   color: #e0e0e0 !important; /* Gris claro para mejor visibilidad */
-}
-
-/* Ajustes para botones en ContactSection */
-.contact-section .MuiButton-root {
-  background-color: rgba(255, 77, 77, 0.9) !important; /* Rojo más opaco */
-  color: white !important;
-  font-weight: bold;
-  text-shadow: none;
-  border: none;
-  z-index: 6;
 }
 
 /* Ajuste para la imagen en HeroSection */
@@ -474,11 +461,11 @@ body {
   }
 
   .MuiTypography-h3 {
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
   }
 
   .MuiTypography-h4 {
-    font-size: 1.75rem !important;
+    font-size: 1.5rem !important;
   }
 
   .canvas-container img {
@@ -700,7 +687,6 @@ body {
 .MuiAppBar-root,
 .MuiCard-root,
 .hero-section,
-.contact-section,
 .portfolio-section,
 .skills-section {
   position: relative;
@@ -809,4 +795,50 @@ body {
 .academic-history-section .MuiTypography-body1,
 .certifications-section .MuiTypography-body2 {
   color: var(--text-secondary);
+}
+
+/* Estilos para los contenedores de íconos */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Estilos para la foto de perfil */
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Animaciones en las tarjetas */
+.project-card,
+.certification-card,
+.academic-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover,
+.certification-card:hover,
+.academic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.2);
+}
+
+/* Mejora de la UI/UX */
+.MuiTypography-h5 {
+  font-weight: 600;
+}
+
+.MuiTypography-subtitle1 {
+  color: #b0b0b0;
+}
+
+.MuiTypography-body1,
+.MuiTypography-body2 {
+  color: #e0e0e0;
 }

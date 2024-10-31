@@ -1,25 +1,27 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
+import { School, Engineering } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
+// Revisar y consolidar la información académica
 const academicHistory = [
   {
-    degree: "Bachelor of Technology - BTech, Tecnología/Técnico de software informático",
+    degree: "Licenciatura en Desarrollo de Software",
     institution: "Universidad Insurgentes",
     startDate: "Octubre 2024",
     expectedGraduation: "Octubre 2027",
     description:
-      "Bachelor’s Degree in Software Development. Estudios enfocados en el desarrollo de aplicaciones web y móviles, con énfasis en arquitecturas escalables y seguras.",
-    image: "URL_DE_IMAGEN_UNIVERSIDAD_INSURGENTES",
+      "Estudios enfocados en el desarrollo de aplicaciones web y móviles, con énfasis en arquitecturas escalables y seguras.",
+    icon: <Engineering style={{ fontSize: 60, color: '#ff4d4d' }} />,
   },
   {
-    degree: "Tecnicatura, Tecnología/Técnico de software informático",
+    degree: "Técnico en Software Informático",
     institution: "Instituto Politécnico Nacional",
     startDate: "Enero 2020",
     graduationDate: "Octubre 2024",
     description:
-      "Formación técnica en programación, estructuras de datos, bases de datos y ciberseguridad. Participación en hackathons y proyectos colaborativos que fomentaron habilidades de trabajo en equipo y resolución de problemas.",
-    image: "URL_DE_IMAGEN_IPN",
+      "Formación en programación, estructuras de datos, bases de datos y ciberseguridad.",
+    icon: <School style={{ fontSize: 60, color: '#ff4d4d' }} />,
   },
 ];
 
@@ -37,25 +39,26 @@ const AcademicHistorySection = () => (
       <Grid container spacing={4}>
         {academicHistory.map((item, index) => (
           <Grid item xs={12} sm={6} key={index}>
-            <Card className="academic-card">
-              <CardMedia
-                component="img"
-                height="140"
-                image={item.image}
-                alt={item.institution}
-                loading="lazy"
-              />
-              <CardContent>
-                <Typography variant="h5">{item.degree}</Typography>
-                <Typography variant="subtitle1">{item.institution}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {item.startDate} - {item.expectedGraduation || item.graduationDate}
-                </Typography>
-                <Typography variant="body1" style={{ marginTop: '10px' }}>
-                  {item.description}
-                </Typography>
-              </CardContent>
-            </Card>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="academic-card">
+                <CardContent>
+                  <div className="icon-container">
+                    {item.icon}
+                  </div>
+                  <Typography variant="h5">{item.degree}</Typography>
+                  <Typography variant="subtitle1">{item.institution}</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {item.startDate} - {item.expectedGraduation || item.graduationDate}
+                  </Typography>
+                  <Typography variant="body1" style={{ marginTop: '10px' }}>
+                    {item.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </motion.div>
           </Grid>
         ))}
       </Grid>
