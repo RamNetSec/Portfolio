@@ -1,53 +1,42 @@
 import React from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, Avatar, Box, Chip, Divider } from '@mui/material';
 import { motion } from 'framer-motion';
+import { CodeRounded, SecurityRounded, SchoolRounded } from '@mui/icons-material';
 
 const ProfileSection = () => (
   <motion.div
+    className="profile-section"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ duration: 1, ease: "easeOut" }}
+    transition={{ duration: 1 }}
   >
-    <Container maxWidth="lg" style={{ marginTop: '80px' }}>
-      <motion.div
-        initial={{ y: -20 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
-        <Typography 
-          variant="h1" 
-          align="center" 
-          gutterBottom 
-          sx={{ 
-            fontSize: { xs: '2rem', md: '2.5rem' },
-            fontWeight: 700,
-            letterSpacing: '-0.5px'
-          }}
-        >
-          Ramses Valdez - Desarrollador de Software
-        </Typography>
-        <Typography 
-          variant="h2" 
-          align="center" 
-          color="textSecondary" 
-          sx={{ fontSize: '1.5rem' }}
-          paragraph
-        >
-          Perfil Profesional
-        </Typography>
-        <Typography variant="h6" align="center" color="textSecondary" paragraph>
-          I am a software development technician and cybersecurity apprentice, currently pursuing a degree in Software Development at Universidad de Insurgentes. I seek to collaborate in an innovative company where I can contribute creativity and up-to-date knowledge to improve efficiency and achieve goals, offering a fresh perspective and experience in development and information security projects.
-        </Typography>
-        <Typography variant="h6" align="center" color="textSecondary" paragraph>
-          <strong>Ramses Valdez L.</strong><br />
-          Software Development Intern<br />
-          Phone: +52 5515317677<br />
-          Mobile: +52 55 9422 9268<br />
-          Email: ramvallugo@gmail.com
-        </Typography>
-      </motion.div>
+    <Container maxWidth="lg">
+      <Typography variant="h4" align="center" gutterBottom>
+        Perfil
+      </Typography>
+      <Grid container spacing={4} alignItems="center">
+        <Grid item xs={12} md={4} style={{ textAlign: 'center' }}>
+          <Avatar
+            alt="Ramses Valdez"
+            src="https://avatars.githubusercontent.com/u/107959089?s=400&u=9a2acd0baa3c9e4017343acb890fcf598e4e2860&v=4"
+            sx={{ width: 200, height: 200 }}
+          />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Card className="profile-card">
+            <CardContent>
+              <Typography variant="h5">Ramses Valdez Lugo</Typography>
+              <Typography variant="subtitle1">Desarrollador de Software y Especialista en Ciberseguridad</Typography>
+              <Typography variant="body1" style={{ marginTop: '10px' }}>
+                Soy un técnico en desarrollo de software y ciberseguridad en formación, buscando oportunidades para colaborar en una empresa innovadora. Mi objetivo es contribuir con creatividad y conocimientos actualizados, mejorando la eficiencia y cumpliendo objetivos. Ofrezco una perspectiva fresca y experiencia en proyectos de desarrollo y protección de información.
+              </Typography>
+              {/* Puedes agregar más detalles aquí si lo deseas */}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </Container>
   </motion.div>
 );
 
-export default ProfileSection;
+export default React.memo(ProfileSection);

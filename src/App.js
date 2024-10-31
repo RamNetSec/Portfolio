@@ -22,13 +22,12 @@ import { motion } from 'framer-motion';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // Lazy load components
-const ProfileSection = lazy(() => import('./components/ProfileSection'));
-const HeroSection = lazy(() => import('./components/HeroSection'));
-const ContactSection = lazy(() => import('./components/ContactSection'));
-const CertificationsSection = lazy(() => import('./components/CertificationsSection'));
-const AcademicHistorySection = lazy(() => import('./components/AcademicHistorySection'));
-const SkillsSection = lazy(() => import('./components/SkillsSection'));
-const PortfolioSection = lazy(() => import('./components/PortfolioSection'));
+import ProfileSection from './components/ProfileSection';
+import HeroSection from './components/HeroSection';
+import ContactSection from './components/ContactSection';
+import AcademicHistorySection from './components/AcademicHistorySection';
+import SkillsSection from './components/SkillsSection';
+import PortfolioSection from './components/PortfolioSection';
 
 // Actualización del tema a una paleta más elegante, mate, oscura y roja
 const darkTheme = createTheme({
@@ -272,7 +271,6 @@ const App = () => {
                 <SkillsSection /> {/* Agregar aquí */}
                 <PortfolioSection />
                 <AcademicHistorySection className="fade-on-scroll" /> {/* Renderizar nuevo componente */}
-                <CertificationsSection className="fade-on-scroll" />
                 <ContactSection />
               </div>
             </Suspense>

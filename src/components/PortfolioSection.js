@@ -167,6 +167,22 @@ const PortfolioSection = () => {
                     >
                       Ver Proyecto
                     </Button>
+                    <Button
+                      startIcon={<Language />}
+                      variant="contained"
+                      color="primary"
+                      href="https://ramnet.glitch.me/"
+                      target="_blank"
+                      fullWidth
+                      sx={{
+                        bgcolor: 'rgba(255,77,77,0.9)',
+                        '&:hover': {
+                          bgcolor: 'rgba(255,77,77,1)'
+                        }
+                      }}
+                    >
+                      Visitar Sitio Personal
+                    </Button>
                   </CardActions>
                 </Card>
               </motion.div>

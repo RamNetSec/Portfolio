@@ -57,40 +57,32 @@ const ContactSection = () => {
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
           }}
         >
-          Contact Information
+          Información de Contacto
         </Typography>
         <Grid container spacing={2} justifyContent="center">
           <Grid item>
-            <Typography 
-              variant="h6"
-              style={{ 
-                color: '#e0e0e0',
-                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-              }}
-            >
-              Phone: +52 5515317677
+            <Typography variant="h6">
+              Teléfono: +52 5515317677
             </Typography>
           </Grid>
           <Grid item>
-            <Typography 
-              variant="h6"
-              style={{ 
-                color: '#e0e0e0',
-                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-              }}
-            >
-              Mobile: +52 55 9422 9268
+            <Typography variant="h6">
+              Móvil: +52 55 9422 9268
             </Typography>
           </Grid>
           <Grid item>
-            <Typography 
-              variant="h6"
-              style={{ 
-                color: '#e0e0e0',
-                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-              }}
-            >
-              Email: ramvallugo@gmail.com
+            <Typography variant="h6">
+              Email: ramnetenterprise@gmail.com
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h6">
+              LinkedIn: www.linkedin.com/in/ramnetsecurity
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h6">
+              Página Personal: ramnet.glitch.me/
             </Typography>
           </Grid>
         </Grid>
