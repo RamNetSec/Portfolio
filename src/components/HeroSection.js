@@ -24,10 +24,13 @@ const HeroSection = () => {
           ¡Hola, soy Ramses Valdez Lugo!
         </Typography>
         <Typography variant="h5" color="textSecondary" paragraph>
-          Desarrollador de Software y Especialista en Ciberseguridad
+          Especialista en Ciberseguridad y Desarrollador de Software
         </Typography>
         <Typography variant="body1" color="textSecondary" paragraph>
-          Soy un técnico en desarrollo de software y ciberseguridad en formación, buscando oportunidades para colaborar en una empresa innovadora. Mi objetivo es contribuir con creatividad y conocimientos actualizados, mejorando la eficiencia y cumpliendo objetivos.
+          Profesional especializado en ciberseguridad, con experiencia en desarrollo de software y análisis de vulnerabilidades. 
+          Contribuidor activo en proyectos de código abierto en GitHub como "RamNetSec", enfocado en herramientas de administración 
+          remota y aplicaciones web. Mantengo una presencia activa en YouTube y AllMyLinks, compartiendo contenido sobre seguridad 
+          informática y desarrollo tecnológico.
         </Typography>
         <Box sx={{ mt: 4 }}>
           <Button variant="contained" color="primary" sx={{ mr: 2 }}>

@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend
-} from 'chart.js';
 import { Radar } from 'react-chartjs-2';
+import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
 import { motion } from 'framer-motion';
-import { Paper } from '@mui/material';
+import { Paper, Typography, Box } from '@mui/material';
 
 ChartJS.register(
   RadialLinearScale,
@@ -26,20 +18,24 @@ const RadarChart = ({ data }) => {
     labels: data.map(item => item.name),
     datasets: [
       {
-        label: 'Habilidades',
-        data: data.map(item => item.level * 20), // Convertir nivel a escala 0-100
+        label: 'Nivel de Habilidad',
+        data: data.map(item => item.level * 20),
         backgroundColor: 'rgba(255, 77, 77, 0.2)',
         borderColor: 'rgba(255, 77, 77, 1)',
         borderWidth: 2,
         pointBackgroundColor: 'rgba(255, 77, 77, 1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(255, 77, 77, 1)'
+        pointHoverBorderColor: 'rgba(255, 77, 77, 1)',
+        pointRadius: 4,
+        pointHoverRadius: 6
       }
     ]
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       r: {
         angleLines: {
@@ -49,13 +45,13 @@ const RadarChart = ({ data }) => {
           color: 'rgba(255, 255, 255, 0.1)'
         },
         pointLabels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: '#fff',
           font: {
-            size: 14
+            size: 12
           }
         },
         ticks: {
-          color: 'rgba(255, 255, 255, 0.6)',
+          color: '#fff',
           backdropColor: 'transparent'
         }
       }
@@ -63,15 +59,20 @@ const RadarChart = ({ data }) => {
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)'
+          color: '#fff'
+        }
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        callbacks: {
+          label: function(context) {
+            return `Nivel: ${context.parsed.r / 20}/5`;
+          }
         }
       }
-    },
-    animation: {
-      duration: 1000 // Reducido de 2000 a 1000ms
-    },
-    responsive: true,
-    maintainAspectRatio: false
+    }
   };
 
   return (
@@ -81,19 +82,26 @@ const RadarChart = ({ data }) => {
       transition={{ duration: 0.5 }}
     >
       <Paper
-        elevation={2} // Reducido de 3 a 2
+        elevation={3}
         sx={{
-          p: 2, // Reducido de 3 a 2
-          background: 'rgba(26, 26, 26, 0.8)',
+          p: 3,
+          background: 'rgba(26, 26, 26, 0.95)',
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 77, 77, 0.2)',
-          height: '400px'
+          borderRadius: '16px',
+          height: '400px',
+          position: 'relative'
         }}
       >
-        <Radar data={chartData} options={options} />
+        <Typography variant="h6" gutterBottom align="center" sx={{ color: '#fff' }}>
+          Habilidades Técnicas
+        </Typography>
+        <Box sx={{ position: 'relative', height: 'calc(100% - 40px)' }}>
+          <Radar data={chartData} options={options} />
+        </Box>
       </Paper>
     </motion.div>
   );
 };
 
-export default RadarChart;
+export default React.memo(RadarChart);

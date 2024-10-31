@@ -829,6 +829,24 @@ body {
   box-shadow: 0 8px 30px rgba(255, 77, 77, 0.2);
 }
 
+/* Ajuste de padding en tarjetas para mejor espaciado */
+.project-card,
+.certification-card,
+.academic-card {
+  padding: 24px;
+}
+
+/* Mejorar legibilidad en títulos */
+.MuiTypography-h5 {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Aumentar contraste en subtítulos */
+.MuiTypography-subtitle1 {
+  color: #cccccc;
+}
+
 /* Mejora de la UI/UX */
 .MuiTypography-h5 {
   font-weight: 600;

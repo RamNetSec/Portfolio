@@ -1,9 +1,21 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
-import { Web, MobileFriendly, Code } from '@mui/icons-material';
+import { Web, MobileFriendly, Code, Security, Terminal } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 const projects = [
+  {
+    title: 'RAT_LINUX',
+    description: 'Herramienta de administración remota (Remote Administration Tool) para sistemas Linux desarrollada en Python, enfocada en la administración remota segura de sistemas Linux.',
+    icon: <Terminal style={{ fontSize: 60, color: '#ff4d4d' }} />,
+    link: 'https://github.com/RamNetSec/RAT_LINUX',
+  },
+  {
+    title: 'Portfolio Personal',
+    description: 'Portafolio desarrollado con React, Material-UI y Framer Motion. Presenta una interfaz moderna con animaciones fluidas y efectos de escritura dinámica. Incluye sistema de construcción optimizado para producción.',
+    icon: <Web style={{ fontSize: 60, color: '#ff4d4d' }} />,
+    link: 'https://github.com/RamNetSec/Portfolio',
+  },
   {
     title: 'Proyecto Web',
     description: 'Descripción del proyecto web.',
@@ -18,6 +30,18 @@ const projects = [
     title: 'Herramienta de Desarrollo',
     description: 'Descripción de la herramienta.',
     icon: <Code style={{ fontSize: 60, color: '#ff4d4d' }} />,
+  },
+  {
+    title: 'Centro de Comando WebSocket',
+    description: 'Sistema de comunicación en tiempo real entre servidor y clientes, con transferencia de archivos y soporte multiplataforma.',
+    icon: <Code style={{ fontSize: 60, color: '#ff4d4d' }} />,
+    link: 'https://github.com/RamNetSec/RAT_LINUX',
+  },
+  {
+    title: 'Sec_Server_RamNetSec',
+    description: 'Herramienta de monitoreo de red para detectar dispositivos conectados y analizar su seguridad básica.',
+    icon: <Security style={{ fontSize: 60, color: '#ff4d4d' }} />,
+    link: 'https://github.com/RamNetSec/Sec_Server_RamNetSec',
   },
 ];
 

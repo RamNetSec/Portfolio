@@ -4,11 +4,11 @@ import { Container, Typography, Grid } from '@mui/material';
 // ...código existente...
 const experiences = [
   {
-    position: 'Intern en Desarrollo de Software',
-    company: 'Hack The Box (HTB)',
-    period: 'Octubre 2024',
+    position: 'Sin experiencia laboral',
+    company: '',
+    period: '',
     description:
-      'Durante mi pasantía en HTB, adquirí habilidades esenciales en ciberseguridad ofensiva...',
+      'Actualmente no tengo experiencia laboral, pero estoy entusiasmado por aplicar mis conocimientos en proyectos reales y colaborar en equipos profesionales.',
   },
 ];
 // ...código existente...
