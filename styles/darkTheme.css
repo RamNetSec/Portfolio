@@ -1,0 +1,21 @@
+:root {
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --accent-color: #2a2a2a;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.gaussian-light {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
