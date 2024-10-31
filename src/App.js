@@ -28,6 +28,7 @@ import ContactSection from './components/ContactSection';
 import CertificationsSection from './components/CertificationsSection';
 import AcademicHistorySection from './components/AcademicHistorySection'; // Nuevo componente
 import SkillsSection from './components/SkillsSection'; // Agregar importación
+import PortfolioSection from './components/PortfolioSection';
 
 // Actualización del tema a una paleta más elegante, mate, oscura y roja
 const darkTheme = createTheme({
@@ -46,6 +47,15 @@ const darkTheme = createTheme({
     text: {
       primary: '#ffffff',
       secondary: '#b0b0b0',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
   components: {
@@ -74,11 +84,23 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          '@media (min-width: 600px)': {
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          },
+        },
+      },
+    },
   },
 });
 
 // Componente principal
-function App() {
+const App = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
@@ -102,43 +124,64 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Crear luces gaussianas
-    const lights = [];
-    const colors = ['#ff4d4d', '#4a90e2', '#50e3c2'];
+    // Cargar el script de efectos gaussianos
+    const script = document.createElement('script');
+    script.src = '/js/gaussianEffects.js';
+    script.async = true;
     
-    colors.forEach((color, i) => {
-      const light = document.createElement('div');
-      light.className = 'gaussian-light';
-      light.style.backgroundColor = color;
-      document.body.appendChild(light);
-      lights.push(light);
-    });
-
-    const handleMouseMove = (e) => {
-      lights.forEach((light, i) => {
-        light.style.left = `${e.clientX + (i - 1) * 100}px`;
-        light.style.top = `${e.clientY + (i - 1) * 100}px`;
-      });
+    const handleScriptLoad = () => {
+      console.log('Efectos gaussianos cargados');
+      if (window.initGaussianEffects) {
+        window.initGaussianEffects();
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    script.addEventListener('load', handleScriptLoad);
+    document.body.appendChild(script);
+
+    return () => {
+      // Limpieza al desmontar
+      script.removeEventListener('load', handleScriptLoad);
+      document.body.removeChild(script);
+      const container = document.querySelector('.gaussian-container');
+      if (container) {
+        container.remove();
+      }
+    };
   }, []);
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
 
+  // Añadir control de scroll suave
+  const scrollToSection = (elementId) => {
+    const element = document.querySelector(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+    setDrawerOpen(false);
+  };
+
+  // Modificar menuItems para usar la nueva función de scroll
   const menuItems = [
-    { text: 'Profile', href: '#profile' },
-    { text: 'Contact', href: '#contact' },
-    { text: 'Academic History', href: '#academic-history' }, // Agregar enlace al menú
-    // Add more links as needed
+    { text: 'Profile', id: '#profile' },
+    { text: 'Skills', id: '#skills' },
+    { text: 'Contact', id: '#contact' },
+    { text: 'Academic History', id: '#academic-history' },
+    { text: 'Portfolio', id: '#portfolio' },
   ];
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div>
+      <div itemScope itemType="http://schema.org/Person">
+        <meta itemProp="name" content="Ramses Valdez" />
+        <meta itemProp="jobTitle" content="Desarrollador de Software" />
+        <meta itemProp="description" content="Desarrollador de Software especializado en ciberseguridad" />
+        
         {/* Indicador de progreso de scroll */}
         <LinearProgress
           variant="determinate"
@@ -170,12 +213,12 @@ function App() {
                   >
                     <List>
                       {menuItems.map((item) => (
-                        <ListItem button key={item.text} onClick={toggleDrawer(false)}>
-                          <ListItemText>
-                            <a href={item.href} style={{ textDecoration: 'none', color: '#ff4d4d' }}>
-                              {item.text}
-                            </a>
-                          </ListItemText>
+                        <ListItem 
+                          button 
+                          key={item.text} 
+                          onClick={() => scrollToSection(item.id)}
+                        >
+                          <ListItemText primary={item.text} />
                         </ListItem>
                       ))}
                     </List>
@@ -183,9 +226,10 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Button color="inherit" href="#profile">Profile</Button>
-                  <Button color="inherit" href="#contact">Contact</Button>
-                  <Button color="inherit" href="#academic-history">Academic History</Button> {/* Agregar botón al menú */}
+                  <Button color="inherit" onClick={() => scrollToSection('#profile')}>Profile</Button>
+                  <Button color="inherit" onClick={() => scrollToSection('#skills')}>Skills</Button>
+                  <Button color="inherit" onClick={() => scrollToSection('#contact')}>Contact</Button>
+                  <Button color="inherit" onClick={() => scrollToSection('#academic-history')}>Academic History</Button> {/* Agregar botón al menú */}
                 </>
               )}
             </Toolbar>
@@ -196,6 +240,7 @@ function App() {
         <HeroSection />
         <ProfileSection />
         <SkillsSection /> {/* Agregar aquí */}
+        <PortfolioSection />
         <ContactSection />
         <CertificationsSection className="fade-on-scroll" />
         <AcademicHistorySection className="fade-on-scroll" /> {/* Renderizar nuevo componente */}
@@ -204,6 +249,6 @@ function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

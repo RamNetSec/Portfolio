@@ -150,15 +150,65 @@ body {
 /* Efectos de luz gaussiana */
 .gaussian-light {
   position: fixed;
-  width: 400px; /* Aumentado de 300px */
-  height: 400px; /* Aumentado de 300px */
+  width: 600px; /* Aumentado para más impacto visual */
+  height: 600px;
   border-radius: 50%;
-  filter: blur(120px); /* Aumentado de 100px */
-  opacity: 0.25; /* Aumentado de 0.1 */
+  filter: blur(150px);
+  opacity: 0.3;
   pointer-events: none;
-  transition: 0.3s ease;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   mix-blend-mode: screen;
-  z-index: 1; /* Asegurar que está detrás de todo */
+  z-index: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .gaussian-light {
+    width: 300px;
+    height: 300px;
+    filter: blur(100px);
+    opacity: 0.25;
+  }
+}
+
+/* Actualizar los estilos de las luces gaussianas */
+.gaussian-light {
+  border-radius: 50%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
+}
+
+/* Ajustes específicos para móviles */
+@media (max-width: 768px) {
+  .gaussian-light {
+    opacity: 0.4 !important;
+    filter: blur(80px) !important;
+  }
+}
+
+/* Asegurar que el contenido esté por encima de las luces */
+.MuiContainer-root,
+.MuiAppBar-root,
+.MuiCard-root {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mejorar rendimiento de animaciones */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimización para dispositivos de alto DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .gaussian-light {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /* Estilos para componentes Material-UI */
@@ -169,16 +219,27 @@ body {
   position: relative;
   z-index: 2; /* Asegura que las tarjetas estén por encima de las luces */
   transition: background 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .MuiCard-root:hover {
   background: rgba(26, 26, 26, 0.8) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .app-bar {
   z-index: 10 !important; /* AppBar siempre visible */
   background: rgba(10, 10, 10, 0.7) !important;
   backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease;
+}
+
+.app-bar.scrolled {
+  background-color: rgba(10, 10, 10, 0.95) !important;
 }
 
 /* Contenedores de secciones */
@@ -210,6 +271,45 @@ body {
   backdrop-filter: none; /* Eliminar el blur del hero */
   background: rgba(10, 10, 10, 0.98); /* Más opaco aún */
   margin-top: 80px; /* Espacio para el AppBar */
+}
+
+.hero-section {
+  margin-top: 56px;
+  padding: var(--spacing-sm);
+}
+
+/* Ajustes para HeroSection - más transparente */
+.hero-section {
+  background: rgba(10, 10, 10, 0.7) !important;
+  backdrop-filter: blur(15px);
+}
+
+/* Estilos para PortfolioSection */
+.portfolio-section {
+  position: relative;
+  z-index: 5;
+  padding: 4rem 0;
+}
+
+.portfolio-section .MuiCard-root {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-section .MuiCard-root:hover {
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.2);
+}
+
+.MuiTypography-h3 {
+  font-size: 2rem !important;
+}
+
+.MuiTypography-h4 {
+  font-size: 1.75rem !important;
+}
+
+.canvas-container img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Ajustes de texto */
@@ -266,6 +366,26 @@ body {
   background-color: rgba(255, 77, 77, 0.9) !important;
 }
 
+/* Mejoras de UI/UX */
+.MuiButton-root {
+  transition: all 0.3s ease;
+}
+
+.MuiButton-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+}
+
+/* Efectos de hover mejorados */
+.MuiCard-root {
+  transition: all 0.3s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.2);
+}
+
 /* Estilos para la sección de habilidades */
 .skills-section {
   position: relative;
@@ -274,9 +394,239 @@ body {
 
 .skill-card {
   text-align: center;
+  backdrop-filter: blur(10px);
+  background: rgba(26, 26, 26, 0.8) !important;
+  border: 1px solid rgba(255, 77, 77, 0.2);
+  transition: all 0.3s ease !important;
 }
 
 .skill-card:hover {
   transform: translateY(-5px);
-  background: rgba(26, 26, 26, 0.8) !important;
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.2) !important;
+  background: rgba(26, 26, 26, 0.9) !important;
+}
+
+/* Mejoras responsivas generales */
+:root {
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+}
+
+/* Media queries base */
+@media (max-width: 600px) {
+  .hero-section {
+    margin-top: 56px;
+    padding: var(--spacing-sm);
+  }
+
+  .MuiTypography-h3 {
+    font-size: 2rem !important;
+  }
+
+  .MuiTypography-h4 {
+    font-size: 1.75rem !important;
+  }
+
+  .canvas-container img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Mejoras en la navegación */
+.app-bar {
+  transition: background-color 0.3s ease;
+}
+
+.app-bar.scrolled {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+}
+
+/* Mejoras en las cards */
+.MuiCard-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Mejoras en las secciones */
+.section-container {
+  padding: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  overflow: hidden;
+}
+
+/* Animaciones suaves */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Mejoras en el scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 26, 26, 0.95);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+  border-radius: 4px;
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 37%,
+    rgba(255, 255, 255, 0.1) 63%
+  );
+  background-size: 400% 100%;
+  animation: loading 1.4s ease infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* Mejoras de loading y feedback */
+.loading-state {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-state::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Grid system responsivo */
+.grid-container {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Soporte para dark mode del sistema */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0a0a0a;
+    --text-color: #ffffff;
+  }
+}
+
+/* Animación para el radar chart */
+.radar-container {
+  position: relative;
+  z-index: 2;
+}
+
+.radar-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 77, 77, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Actualizar los estilos de efectos gaussianos */
+.gaussian-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gaussian-light {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+  .gaussian-light {
+    width: 400px;
+    height: 400px;
+    filter: blur(100px);
+    opacity: 0.3;
+  }
+}
+
+/* Asegurar que el contenido esté por encima de las luces */
+.MuiContainer-root,
+.MuiAppBar-root,
+.MuiCard-root,
+.hero-section,
+.contact-section,
+.portfolio-section,
+.skills-section {
+  position: relative;
+  z-index: 1;
 }
