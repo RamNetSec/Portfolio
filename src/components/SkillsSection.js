@@ -56,72 +56,85 @@ const SkillsSection = () => {
   }, []);
 
   return (
-    <motion.div
-      ref={sectionRef}
-      initial={{ opacity: 0 }}
-      animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.5 }} // Reducido de 0.8 a 0.5
-      className="skills-section"
-      id="skills"
-    >
-      <Container maxWidth="lg" className="section-container">
-        <Typography 
-          variant="h4" 
-          align="center" 
-          gutterBottom
-          className="section-title"
+    <Container maxWidth="lg" className="section-container">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <Typography variant="h4" align="center" gutterBottom
+          sx={{
+            mb: 6,
+            fontWeight: 700,
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: '-10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '60px',
+              height: '4px',
+              background: 'linear-gradient(to right, #ff4d4d, #ff8080)'
+            }
+          }}
         >
           Technical Skills
         </Typography>
-        
-        {/* Añadir el gráfico de radar */}
-        <Grid container spacing={4}>
+
+        <Grid container spacing={6}>
           <Grid item xs={12} md={6}>
             <RadarChart data={skills} />
           </Grid>
-          
-          {/* Mantener las tarjetas de habilidades existentes */}
           <Grid item xs={12} md={6}>
-            <Grid container spacing={2}>
-              {skills.map((skill) => (
-                <Grid 
-                  item 
-                  xs={12} 
-                  sm={6} 
-                  key={skill.name}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <Grid container spacing={2}>
+                {skills.map((skill) => (
+                  <Grid 
+                    item 
+                    xs={12} 
+                    sm={6} 
+                    key={skill.name}
                   >
-                    <Paper 
-                      elevation={3} 
-                      className="skill-card"
-                      sx={{
-                        p: 2,
-                        height: '100%',
-                        background: 'rgba(26, 26, 26, 0.8)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 77, 77, 0.2)',
-                        transition: 'all 0.3s ease'
-                      }}
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Typography 
-                        variant="h6" 
-                        gutterBottom
+                      <Paper 
+                        elevation={3} 
+                        className="skill-card"
+                        sx={{
+                          p: 2,
+                          height: '100%',
+                          background: 'rgba(26, 26, 26, 0.8)',
+                          backdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255, 77, 77, 0.2)',
+                          transition: 'all 0.3s ease'
+                        }}
                       >
-                        {skill.name}
-                      </Typography>
-                      <SkillLevel level={skill.level} />
-                    </Paper>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
+                        <Typography 
+                          variant="h6" 
+                          gutterBottom
+                        >
+                          {skill.name}
+                        </Typography>
+                        <SkillLevel level={skill.level} />
+                      </Paper>
+                    </motion.div>
+                  </Grid>
+                ))}
+              </Grid>
+            </motion.div>
           </Grid>
         </Grid>
-      </Container>
-    </motion.div>
+      </motion.div>
+    </Container>
   );
 };
 

@@ -74,6 +74,10 @@ const darkTheme = createTheme({
           background: 'rgba(26, 26, 26, 0.95)', // Más opaco
           backdropFilter: 'blur(10px)',
           boxShadow: '0 4px 30px rgba(0, 0, 0, 0.2)',
+          transition: 'transform 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-5px)'
+          }
         },
       },
     },
@@ -87,11 +91,9 @@ const darkTheme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
-          paddingLeft: '16px',
-          paddingRight: '16px',
+          padding: '80px 24px', // Más espaciado vertical
           '@media (min-width: 600px)': {
-            paddingLeft: '24px',
-            paddingRight: '24px',
+            padding: '100px 32px',
           },
         },
       },
@@ -103,8 +105,31 @@ const darkTheme = createTheme({
 const App = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isValidDomain, setIsValidDomain] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    const checkDomain = () => {
+      const allowedDomain = 'a1.ramnetsec.com';
+      const currentDomain = window.location.hostname;
+      
+      if (currentDomain !== allowedDomain) {
+        // Redirigir al dominio permitido o mostrar mensaje de error
+        window.location.href = `https://${allowedDomain}`;
+        return;
+      }
+      
+      setIsValidDomain(true);
+    };
+
+    checkDomain();
+  }, []);
+
+  // Si el dominio no es válido, no renderizar nada
+  if (!isValidDomain) {
+    return null;
+  }
 
   // Efecto para manejar el progreso de scroll
   useEffect(() => {
@@ -177,75 +202,85 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div itemScope itemType="http://schema.org/Person">
-        <meta itemProp="name" content="Ramses Valdez" />
-        <meta itemProp="jobTitle" content="Desarrollador de Software" />
-        <meta itemProp="description" content="Desarrollador de Software especializado en ciberseguridad" />
-        
-        {/* Indicador de progreso de scroll */}
-        <LinearProgress
-          variant="determinate"
-          value={scrollProgress}
-          style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 1300 }}
-        />
+      <div className="app-container">
+        <div itemScope itemType="http://schema.org/Person">
+          <meta itemProp="name" content="Ramses Valdez" />
+          <meta itemProp="jobTitle" content="Desarrollador de Software" />
+          <meta itemProp="description" content="Desarrollador de Software especializado en ciberseguridad" />
+          
+          {/* Indicador de progreso de scroll */}
+          <LinearProgress
+            variant="determinate"
+            value={scrollProgress}
+            style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 1300 }}
+          />
 
-        {/* AppBar con animación de desvanecimiento */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <AppBar position="fixed" className="app-bar">
-            <Toolbar>
-              <Typography variant="h6" style={{ flexGrow: 1 }}>
-                Ramses Valdez - Portfolio
-              </Typography>
-              {isMobile ? (
-                <>
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleDrawer(true)}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Drawer
-                    anchor="right"
-                    open={drawerOpen}
-                    onClose={toggleDrawer(false)}
-                  >
-                    <List>
-                      {menuItems.map((item) => (
-                        <ListItem 
-                          button 
-                          key={item.text} 
-                          onClick={() => scrollToSection(item.id)}
-                        >
-                          <ListItemText primary={item.text} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </Drawer>
-                </>
-              ) : (
-                <>
-                  <Button color="inherit" onClick={() => scrollToSection('#profile')}>Profile</Button>
-                  <Button color="inherit" onClick={() => scrollToSection('#skills')}>Skills</Button>
-                  <Button color="inherit" onClick={() => scrollToSection('#contact')}>Contact</Button>
-                  <Button color="inherit" onClick={() => scrollToSection('#academic-history')}>Academic History</Button> {/* Agregar botón al menú */}
-                </>
-              )}
-            </Toolbar>
-          </AppBar>
-        </motion.div>
+          {/* AppBar con animación de desvanecimiento */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+            <motion.div 
+              initial={{ y: -100 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <AppBar position="fixed" className="app-bar">
+                <Toolbar>
+                  <Typography variant="h6" style={{ flexGrow: 1 }}>
+                    Ramses Valdez - Portfolio
+                  </Typography>
+                  {isMobile ? (
+                    <>
+                      <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={toggleDrawer(true)}
+                      >
+                        <MenuIcon />
+                      </IconButton>
+                      <Drawer
+                        anchor="right"
+                        open={drawerOpen}
+                        onClose={toggleDrawer(false)}
+                      >
+                        <List>
+                          {menuItems.map((item) => (
+                            <ListItem 
+                              button 
+                              key={item.text} 
+                              onClick={() => scrollToSection(item.id)}
+                            >
+                              <ListItemText primary={item.text} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      </Drawer>
+                    </>
+                  ) : (
+                    <>
+                      <Button color="inherit" onClick={() => scrollToSection('#profile')}>Profile</Button>
+                      <Button color="inherit" onClick={() => scrollToSection('#skills')}>Skills</Button>
+                      <Button color="inherit" onClick={() => scrollToSection('#contact')}>Contact</Button>
+                      <Button color="inherit" onClick={() => scrollToSection('#academic-history')}>Academic History</Button> {/* Agregar botón al menú */}
+                    </>
+                  )}
+                </Toolbar>
+              </AppBar>
+            </motion.div>
+          </motion.div>
 
-        {/* Renderizar nuevos componentes */}
-        <HeroSection />
-        <ProfileSection />
-        <SkillsSection /> {/* Agregar aquí */}
-        <PortfolioSection />
-        <ContactSection />
-        <CertificationsSection className="fade-on-scroll" />
-        <AcademicHistorySection className="fade-on-scroll" /> {/* Renderizar nuevo componente */}
-
-        {/* ...otras secciones si las hay... */}
+          {/* Main Content */}
+          <main className="main-content">
+            <HeroSection />
+            <div className="content-sections">
+              <ProfileSection />
+              <SkillsSection /> {/* Agregar aquí */}
+              <PortfolioSection />
+              <AcademicHistorySection className="fade-on-scroll" /> {/* Renderizar nuevo componente */}
+              <CertificationsSection className="fade-on-scroll" />
+              <ContactSection />
+            </div>
+          </main>
+        </div>
       </div>
     </ThemeProvider>
   );
