@@ -1,55 +1,59 @@
 import React from 'react';
-import { Container, Grid, Typography, Card, CardContent } from '@mui/material';
+import { Container, Grid, Typography, Card, CardContent, Box } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
+const certifications = [
+  {
+    title: 'Curso Básico de Seguridad Informática para Empresas',
+    provider: 'Platzi',
+    date: 'Marzo 2023',
+    description: 'Aprendí los fundamentos de la seguridad informática, incluyendo gestión de riesgos, políticas de seguridad y herramientas esenciales para proteger la infraestructura de una empresa.',
+  },
+  {
+    title: 'Introducción a Ciberseguridad Especial 0222b',
+    provider: 'Cisco',
+    date: 'Julio 2023',
+    description: 'Curso introductorio sobre ciberseguridad ofensiva y defensiva, cubriendo temas como análisis de vulnerabilidades, técnicas de penetración y estrategias de mitigación.',
+  },
+  {
+    title: 'NDG Linux Unhatched Español 0522a',
+    provider: 'Cisco Virtual Academy',
+    date: 'Enero 2023',
+    description: 'Introducción a Linux enfocada en la línea de comandos, administración básica del sistema, y configuración de entornos seguros para el desarrollo de software.',
+  },
+  // Añadir más certificaciones si es necesario
+];
+
 const CertificationsSection = () => (
-  <motion.div className="certifications-section retroiluminacion-teclado iluminacion-led" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-    {/* Sección de Certificaciones */}
-    <Container maxWidth="lg" style={{ marginTop: '40px' }}>
+  <motion.div className="certifications-section" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+    <Container maxWidth="lg">
       <Typography variant="h4" align="center" gutterBottom>
         Certificaciones
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} md={8}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5">Certificaciones</Typography>
-              <Typography>
-                Durante mi pasantía en Hack The Box (HTB), adquirí habilidades esenciales en ciberseguridad ofensiva. Me familiaricé con herramientas como Metasploit y Burp Suite, y aprendí técnicas de explotación y post-explotación. Mejoré en la enumeración de redes y sistemas, fundamental para identificar vulnerabilidades. Además, desarrollé habilidades de pensamiento crítico y resolución de problemas, ya que cada desafío en HTB requiere un enfoque creativo. En resumen, fortalecí mi capacidad para simular ataques y preparar defensas efectivas.
-              </Typography>
-              <Typography variant="h6" style={{ marginTop: '20px' }}>Lista de Certificaciones:</Typography>
-              <ul className="custom-list">
-                <li>
-                  <CheckCircle className="list-icon" />
-                  Curso Básico de Seguridad Informática para Empresas - Platzi
-                </li>
-                <li>
-                  <CheckCircle className="list-icon" />
-                  Introducción a Ciberseguridad Especial 0222b - Cisco
-                </li>
-                <li>
-                  <CheckCircle className="list-icon" />
-                  NDG Linux Unhatched Español 0522a - Cisco Virtual Academy
-                </li>
-              </ul>
-              <Typography variant="h6" style={{ marginTop: '20px' }}>Reconocimientos:</Typography>
-              <ul className="custom-list">
-                <li>
-                  <CheckCircle className="list-icon" />
-                  Linux.
-                </li>
-                <li>
-                  <CheckCircle className="list-icon" />
-                  Java.
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+      <Box mt={4}>
+        <Grid container spacing={4}>
+          {certifications.map((cert, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card className="certifications-card">
+                <CardContent>
+                  <Typography variant="h5" gutterBottom>
+                    {cert.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {cert.provider} - {cert.date}
+                  </Typography>
+                  <Typography variant="body2" style={{ marginTop: '10px' }}>
+                    {cert.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-      </Grid>
+      </Box>
     </Container>
   </motion.div>
 );
 
-export default CertificationsSection;
+export default React.memo(CertificationsSection);

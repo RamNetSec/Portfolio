@@ -1,3 +1,19 @@
+:root {
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --primary-color: #ff4d4d;
+  --secondary-color: #4a90e2;
+  --background-dark: #0a0a0a;
+  --text-light: #ffffff;
+  --text-secondary: #e0e0e0;
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --card-background: rgba(26, 26, 26, 0.8);
+  --card-border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
 .App {
   text-align: center;
 }
@@ -133,7 +149,7 @@
 /* Desvanecimiento Conforme el Scroll Baja */
 .fade-on-scroll {
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
 }
 .fade-on-scroll.scrolled {
   opacity: 1;
@@ -666,6 +682,7 @@ body {
   mix-blend-mode: screen;
   will-change: transform;
   transform: translate3d(0, 0, 0);
+  transition: transform 5s ease-in-out;
 }
 
 /* Ajustes para móviles */
@@ -701,4 +718,95 @@ body {
 
 .content-sections > div {
   margin-bottom: 40px;
+}
+
+/* Estilos para AcademicHistorySection */
+.academic-history-section {
+  padding: 2rem 1rem;
+}
+
+.academic-history-section .MuiTypography-h4 {
+  margin-bottom: 2rem;
+}
+
+.academic-history-section .academic-card {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .academic-history-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .academic-history-section .MuiTypography-h4 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Estilos para CertificationsSection */
+.certifications-section {
+  padding: 2rem 1rem;
+}
+
+.certifications-section .MuiTypography-h4 {
+  margin-bottom: 2rem;
+}
+
+.certifications-section .certifications-card {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .certifications-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .certifications-section .MuiTypography-h4 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Mejora de espaciado general para tarjetas */
+.academic-card,
+.certifications-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.academic-card:hover,
+.certifications-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(255, 77, 77, 0.2);
+}
+
+/* Mejora de responsividad en Grid */
+@media (max-width: 960px) {
+  .academic-history-section .MuiGrid-item,
+  .certifications-section .MuiGrid-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Espaciado adicional entre secciones */
+.content-sections > div {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 600px) {
+  .content-sections > div {
+    margin-bottom: 40px;
+  }
+}
+
+/* Ajustes para botones y textos en certificaciones */
+.certifications-section .MuiTypography-body2 {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* Ajustes adicionales para mejor lectura */
+.academic-history-section .MuiTypography-body1,
+.certifications-section .MuiTypography-body2 {
+  color: var(--text-secondary);
 }
