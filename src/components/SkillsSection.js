@@ -36,15 +36,16 @@ const SkillsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  // Uso de IntersectionObserver más eficiente
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          observer.disconnect(); // Desconectar después de la primera vez
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 } // Reducido de 0.2 a 0.1
     );
 
     if (sectionRef.current) {
@@ -57,9 +58,9 @@ const SkillsSection = () => {
   return (
     <motion.div
       ref={sectionRef}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={{ opacity: 0 }}
+      animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.5 }} // Reducido de 0.8 a 0.5
       className="skills-section"
       id="skills"
     >

@@ -1,8 +1,8 @@
 function initGaussianEffects() {
+  // Reducir el número de luces
   const lights = [
-    { color: 'rgba(255, 77, 77, 0.3)', delay: 0 },    // Rojo
-    { color: 'rgba(74, 144, 226, 0.3)', delay: 100 }, // Azul
-    { color: 'rgba(80, 227, 194, 0.3)', delay: 200 }  // Verde
+    { color: 'rgba(255, 77, 77, 0.3)', delay: 0 },    // Solo rojo
+    { color: 'rgba(74, 144, 226, 0.3)', delay: 100 }  // Solo azul
   ];
 
   const container = document.createElement('div');
@@ -31,22 +31,29 @@ function initGaussianEffects() {
     light.style.transform = `translate(${x}px, ${y}px)`;
   });
 
+  // Throttle para el evento mousemove
+  let ticking = false;
   function updateLights(e) {
-    const mouseX = e.clientX || (e.touches && e.touches[0].clientX) || window.innerWidth / 2;
-    const mouseY = e.clientY || (e.touches && e.touches[0].clientY) || window.innerHeight / 2;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const mouseX = e.clientX || (e.touches && e.touches[0].clientX) || window.innerWidth / 2;
+        const mouseY = e.clientY || (e.touches && e.touches[0].clientY) || window.innerHeight / 2;
 
-    document.querySelectorAll('.gaussian-light').forEach((light, index) => {
-      const speed = 0.15 - (index * 0.03);
-      const x = mouseX - (light.offsetWidth / 2);
-      const y = mouseY - (light.offsetHeight / 2);
-      
-      light.style.transform = `translate(${x}px, ${y}px)`;
-      light.style.transition = 'transform 1s cubic-bezier(0.22, 1, 0.36, 1)';
-    });
+        document.querySelectorAll('.gaussian-light').forEach((light, index) => {
+          const speed = 0.15;
+          const x = mouseX - (light.offsetWidth / 2);
+          const y = mouseY - (light.offsetHeight / 2);
+          
+          light.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
   }
 
-  // Eventos para escritorio y móvil
-  window.addEventListener('mousemove', updateLights);
+  // Eventos con throttling
+  window.addEventListener('mousemove', updateLights, { passive: true });
   window.addEventListener('touchmove', updateLights, { passive: true });
 
   // Actualización inicial

@@ -68,7 +68,7 @@ const RadarChart = ({ data }) => {
       }
     },
     animation: {
-      duration: 2000
+      duration: 1000 // Reducido de 2000 a 1000ms
     },
     responsive: true,
     maintainAspectRatio: false
@@ -81,9 +81,9 @@ const RadarChart = ({ data }) => {
       transition={{ duration: 0.5 }}
     >
       <Paper
-        elevation={3}
+        elevation={2} // Reducido de 3 a 2
         sx={{
-          p: 3,
+          p: 2, // Reducido de 3 a 2
           background: 'rgba(26, 26, 26, 0.8)',
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 77, 77, 0.2)',
